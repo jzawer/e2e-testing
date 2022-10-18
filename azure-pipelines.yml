@@ -2,7 +2,7 @@ jobs:
     - deployment: Run_E2E_Tests
       pool:
         vmImage: ubuntu-latest
-      container: mcr.microsoft.com/playwright:v1.28.0-focal
+      container: mcr.microsoft.com/playwright:v1.24.0-focal
       environment: testing
       strategy:
         runOnce:
