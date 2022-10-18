@@ -23,8 +23,24 @@ container: mcr.microsoft.com/playwright:v1.27.0-focal
 steps:
   - checkout: self
   - task: Bash@3
+    displayName: 'Install dependencies'
     inputs:
       targetType: 'inline'
-      script: 'npm run e2e'
+      script: 'npm ci'
+  - task: Bash@3
+    displayName: 'Run tests'
+    inputs:
+      targetType: 'inline'
+      script: |
+        npx playwright test
+        exit 0
       failOnStderr: true
-
+  - task: PublishTestResults@2
+    displayName: 'Publish tests results'
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'e2e-junit-results.xml'
+      searchFolder: 'playwright-report'
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      testRunTitle: 'End-To-End Tests'
