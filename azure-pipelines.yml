@@ -1,8 +1,8 @@
 jobs:
     - deployment: Run_E2E_Tests
       pool:
-        vmImage: ubuntu-latest
-      container: mcr.microsoft.com/playwright:v1.24.0-focal
+        vmImage: ubuntu-20.04
+      container: mcr.microsoft.com/playwright:v1.27.0-focal
       environment: testing
       strategy:
         runOnce:
@@ -22,6 +22,8 @@ jobs:
               inputs:
                 targetType: 'inline'
                 failOnStderr: false
+                env:
+                  CI: true
                 script: |
                   npx playwright test
                   exit 0
