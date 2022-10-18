@@ -1,9 +1,11 @@
 {
-  "name": "PoC-Playwright",
+  "name": "poc-playwright",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "e2e": "playwright test -c playwright.config.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
