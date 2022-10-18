@@ -1,46 +1,35 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-- poc/second-time
-
-pool:
-  vmImage: ubuntu-latest
-
-parameters:
-- name: test
-  displayName: 'test'
-  type: object
-  default:
-    first: value
-    other: otherValue
-    another: anotherValue
-
-container: mcr.microsoft.com/playwright:v1.27.0-focal
-
-steps:
-  - checkout: self
-  - task: Bash@3
-    displayName: 'Install dependencies'
-    inputs:
-      targetType: 'inline'
-      script: 'npm ci'
-  - task: Bash@3
-    displayName: 'Run tests'
-    inputs:
-      targetType: 'inline'
-      script: |
-        npx playwright test
-        exit 0
-      failOnStderr: true
-  - task: PublishTestResults@2
-    displayName: 'Publish tests results'
-    inputs:
-      testResultsFormat: 'JUnit'
-      testResultsFiles: 'e2e-junit-results.xml'
-      searchFolder: 'playwright-report'
-      mergeTestResults: true
-      failTaskOnFailedTests: true
-      testRunTitle: 'End-To-End Tests'
+jobs:
+    - deployment: Run_E2E_Tests
+      pool:
+        vmImage: ubuntu-latest
+      container: mcr.microsoft.com/playwright:v1.28.0-focal
+      environment: testing
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - checkout: self
+            - task: Bash@3
+              displayName: 'install dependencies'
+              inputs:
+                targetType: 'inline'
+                failOnStderr: false
+                script: |
+                  npm ci
+            - task: Bash@3
+              displayName: 'Run Playwright tests'
+              inputs:
+                targetType: 'inline'
+                failOnStderr: false
+                script: |
+                  npx playwright test
+                  exit 0
+            - task: PublishTestResults@2
+              displayName: 'Publish test results'
+              inputs:
+                testResultsFormat: 'JUnit'
+                testResultsFiles: 'e2e-junit-results.xml'
+                searchFolder: 'playwright-report'
+                mergeTestResults: true
+                failTaskOnFailedTests: true
+                testRunTitle: 'End-To-End Tests'
