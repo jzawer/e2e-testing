@@ -17,16 +17,14 @@ jobs:
                 script: |
                   npm ci
                   npx playwright install chrome
+                  exit 0
             - task: Bash@3
               displayName: 'Run Playwright tests'
               inputs:
                 targetType: 'inline'
                 failOnStderr: false
-                env:
-                  CI: true
                 script: |
                   npx playwright test
-                  exit 0
             - task: PublishTestResults@2
               displayName: 'Publish test results'
               inputs:
