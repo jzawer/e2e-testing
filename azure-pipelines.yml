@@ -2,7 +2,7 @@ jobs:
     - deployment: Run_E2E_Tests
       pool:
         vmImage: ubuntu-20.04
-      container: mcr.microsoft.com/playwright:v1.27.0-focal
+      container: mcr.microsoft.com/playwright:v1.27.1-focal
       environment: testing
       strategy:
         runOnce:
@@ -16,7 +16,6 @@ jobs:
                 failOnStderr: false
                 script: |
                   npm ci
-                  npx playwright install chrome
                   exit 0
             - task: Bash@3
               displayName: 'Run Playwright tests'
