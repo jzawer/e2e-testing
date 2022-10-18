@@ -16,7 +16,7 @@ jobs:
                 failOnStderr: false
                 script: |
                   npm ci
-                  npx playwright install --with-deps
+                  npx playwright install-deps
             - task: Bash@3
               displayName: 'Run Playwright tests'
               inputs:
