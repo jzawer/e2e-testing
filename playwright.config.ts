@@ -45,12 +45,7 @@ const config: PlaywrightTestConfig = {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     // trace: 'on',
     // screenshot: 'on',
-    video: 'on',
-    contextOptions: {
-      recordVideo: {
-        dir: './playwright-report/videos/'
-      }
-    }
+    video: 'on'
   },
 
   /* Configure projects for major browsers */
@@ -106,7 +101,7 @@ const config: PlaywrightTestConfig = {
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
+  outputDir: 'playwright-report/',
 
   /* Run your local dev server before starting the tests */
   // webServer: {
