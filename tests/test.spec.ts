@@ -81,6 +81,8 @@ test.describe('EMEA - B2C - 1Hab - 2 Adults - 0 Child - EUR', () => {
     await expect(page).toHaveURL(/.*&idiocodi=2/);
     const newlangListBtnText = await page.locator('#lang-selector-btn').textContent();
     expect(newlangListBtnText).toMatch('English');
+    // const screenshot = await page.screenshot();
+    // await testInfo.attach('screenshot', { body: screenshot, contentType: 'image/png' });
   });
 
   test('youtube video loads correctly', async ({ page }) => {
@@ -119,5 +121,5 @@ test.describe('EMEA - B2C - 1Hab - 2 Adults - 0 Child - EUR', () => {
 
 test.afterEach(async ({ page }, testInfo) => {
   const screenshot = await page.screenshot();
-  await testInfo.attach('video', { body: screenshot, contentType: 'image/png' });
+  await testInfo.attach('screenshot', { body: screenshot, contentType: 'image/png' });
 });
