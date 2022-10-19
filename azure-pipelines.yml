@@ -28,7 +28,7 @@ jobs:
               displayName: 'Publish test results'
               inputs:
                 testResultsFormat: 'JUnit'
-                testResultsFiles: 'e2e-junit-results.xml'
+                testResultsFiles: '**/e2e-junit-results.xml'
                 mergeTestResults: true
                 failTaskOnFailedTests: true
                 testRunTitle: 'End-To-End Tests'
