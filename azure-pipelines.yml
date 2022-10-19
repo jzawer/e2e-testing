@@ -29,8 +29,6 @@ jobs:
               inputs:
                 testResultsFormat: 'JUnit'
                 testResultsFiles: 'e2e-junit-results.xml'
-                searchFolder: 'playwright-report'
                 mergeTestResults: true
                 failTaskOnFailedTests: true
                 testRunTitle: 'End-To-End Tests'
-                publishRunAttachments: true
