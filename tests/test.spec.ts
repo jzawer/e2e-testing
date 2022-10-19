@@ -116,3 +116,8 @@ test.describe('EMEA - B2C - 1Hab - 2 Adults - 0 Child - EUR', () => {
 //   await video?.saveAs(videoPath);
 //   await testInfo.attach('video', { path: videoPath });
 // });
+
+test.afterEach(async ({ page }, testInfo) => {
+  const screenshot = await page.screenshot();
+  await testInfo.attach('video', { body: screenshot, contentType: 'image/png' });
+});
