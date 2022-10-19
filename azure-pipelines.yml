@@ -33,3 +33,4 @@ jobs:
                 mergeTestResults: true
                 failTaskOnFailedTests: true
                 testRunTitle: 'End-To-End Tests'
+                publishRunAttachments: true
