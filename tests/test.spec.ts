@@ -65,7 +65,7 @@ test.describe('EMEA - B2C - 1Hab - 2 Adults - 0 Child - EUR', () => {
     expect(currencyTotalText).toMatch(/.*USD/);
   });
 
-  test('region change', async ({ page }) => {
+  test('region change', async ({ page }, testInfo) => {
     await page.waitForSelector('#lang-selector-btn');
   
     const langListBtn = page.locator('#lang-selector-btn');
@@ -105,16 +105,14 @@ test.describe('EMEA - B2C - 1Hab - 2 Adults - 0 Child - EUR', () => {
     expect(galleryItemsCount).toBeGreaterThan(0);
     const currentVideo = galleryItems.first().frameLocator('.ytmedia').locator('#player');
     await expect(currentVideo).not.toBeEmpty();
-    // await currentVideo.click();
-
-    page.waitForTimeout(1000);
-    const videoProgress = currentVideo.locator('.ytp-play-progress');
-    const videoProgressTransform = await videoProgress.evaluate((el) => el.style.transform );
-    console.log(videoProgressTransform);
   });
 });
 
-test.afterAll(async () => {
-  console.log('requestFailedCount: ' + requestFailedCount);
-  console.table(responseNot200);
-});
+// test.afterEach(async ({ page }, testInfo) => {
+//   const video = page.video();
+//   const videoPath = './test-results/' + testInfo.title.split(' ').join('-') + '.webm';
+//   //const a = await video?.path();
+//   await page.close();
+//   await video?.saveAs(videoPath);
+//   await testInfo.attach('video', { path: videoPath });
+// });
