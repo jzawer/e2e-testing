@@ -33,7 +33,7 @@ const config: PlaywrightTestConfig = {
   reporter: [
     //['list'],
     //['html'],
-    ["junit", { outputFile: "playwright-report/e2e-junit-results.xml" }]
+    ["junit", { embedAttachmentsAsProperty: 'testrun_evidence', outputFile: "playwright-report/e2e-junit-results.xml" }]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -45,7 +45,7 @@ const config: PlaywrightTestConfig = {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     // trace: 'on',
     // screenshot: 'on',
-    video: 'on'
+    video: 'retain-on-failure'
   },
 
   /* Configure projects for major browsers */

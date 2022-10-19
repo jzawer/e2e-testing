@@ -81,8 +81,10 @@ test.describe('EMEA - B2C - 1Hab - 2 Adults - 0 Child - EUR', () => {
     await expect(page).toHaveURL(/.*&idiocodi=2/);
     const newlangListBtnText = await page.locator('#lang-selector-btn').textContent();
     expect(newlangListBtnText).toMatch('English');
-    // const screenshot = await page.screenshot();
-    // await testInfo.attach('screenshot', { body: screenshot, contentType: 'image/png' });
+    const file = testInfo.outputPath('evidence1.txt');
+    require('fs').writeFileSync(file, 'hello', 'utf8');
+    await testInfo.attach('evidence1.txt', { path: file, contentType: 'text/plain' });
+    await testInfo.attach('evidence2.txt', { body: Buffer.from('world'), contentType: 'text/plain' });
   });
 
   test('youtube video loads correctly', async ({ page }) => {
