@@ -109,17 +109,3 @@ test.describe('EMEA - B2C - 1Hab - 2 Adults - 0 Child - EUR', () => {
     await expect(currentVideo).not.toBeEmpty();
   });
 });
-
-// test.afterEach(async ({ page }, testInfo) => {
-//   const video = page.video();
-//   const videoPath = './test-results/' + testInfo.title.split(' ').join('-') + '.webm';
-//   //const a = await video?.path();
-//   await page.close();
-//   await video?.saveAs(videoPath);
-//   await testInfo.attach('video', { path: videoPath });
-// });
-
-test.afterEach(async ({ page }, testInfo) => {
-  const screenshot = await page.screenshot();
-  await testInfo.attach('screenshot', { body: screenshot, contentType: 'image/png' });
-});
